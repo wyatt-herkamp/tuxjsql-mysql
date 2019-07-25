@@ -20,7 +20,6 @@ import java.util.Properties;
 public final class MysqlBuilder extends BasicSQLBuilder {
     public static final String URL = "jdbc:mysql://%1$s/%2$s?serverTimezone=UTC";
     public static final String JDBC_CLASS = "com.mysql.cj.jdbc.Driver";
-    public static final SQLAction[] SUPPORTED_ACTIONS = {SQLAction.SELECT, SQLAction.INSERT, SQLAction.UPDATE, SQLAction.DELETE};
 
     @Override
     public TableBuilder createTable() {
@@ -62,7 +61,6 @@ public final class MysqlBuilder extends BasicSQLBuilder {
         return new BasicJoinStatement(basicSelectStatement);
     }
 
-
     @Override
     public UpdateStatement createUpdateStatement() {
         return new MysqlUpdateStatement(tuxJSQL);
@@ -81,11 +79,6 @@ public final class MysqlBuilder extends BasicSQLBuilder {
     @Override
     public String jdbcClass() {
         return JDBC_CLASS;
-    }
-
-    @Override
-    public SQLAction[] supportedActions() {
-        return SUPPORTED_ACTIONS;
     }
 
     @Override
