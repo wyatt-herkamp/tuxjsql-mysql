@@ -8,8 +8,8 @@ public enum MysqlDataTypes implements SQLDataType {
     VARCHAR,
     TINYINT,
     MEDIUMINT,
-    INT(BasicDataTypes.INTEGER),
-    BIGINT,
+    INT,
+    BIGINT(BasicDataTypes.INTEGER),
     DOUBLE(BasicDataTypes.REAL);
     private BasicDataTypes types;
 

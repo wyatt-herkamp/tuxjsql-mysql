@@ -28,7 +28,7 @@ public class MysqlInsertStatement extends BasicInsertStatement {
                 columnsToInsert.append(",");
                 question.append(",");
             }
-            columnsToInsert.append(column);
+            columnsToInsert.append("`").append(column).append("`");
             question.append("?");
         }
         String query = String.format(Queries.INSERT.getString(), table.getName(), columnsToInsert.toString(), question.toString());

@@ -28,7 +28,7 @@ public final class MysqlBuilder extends BasicSQLBuilder {
 
     @Override
     public ColumnBuilder createColumn() {
-        return new MysqlColumnBuilder();
+        return new MysqlColumnBuilder(tuxJSQL);
     }
 
     @Override
@@ -106,6 +106,6 @@ public final class MysqlBuilder extends BasicSQLBuilder {
 
     @Override
     public <T> ColumnBuilder<T> createColumn(T t) {
-        return new MysqlColumnBuilder<>(t);
+        return new MysqlColumnBuilder<>(tuxJSQL,t);
     }
 }

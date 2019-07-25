@@ -1,6 +1,7 @@
 package dev.tuxjsql.mysql;
 
 import dev.tuxjsql.basic.sql.BasicSQLColumn;
+import dev.tuxjsql.core.TuxJSQL;
 import dev.tuxjsql.core.sql.SQLColumn;
 import dev.tuxjsql.core.sql.SQLDataType;
 import dev.tuxjsql.core.sql.SQLTable;
@@ -11,8 +12,8 @@ public class MysqlColumn extends BasicSQLColumn {
     private static final String AUTOINCREMENT = " AUTO_INCREMENT";
     private static final String PRIMARY_KEY = " PRIMARY KEY";
 
-    public MysqlColumn(String name, Object defaultValue, List<String> dataTypeRules, boolean notNull, boolean unique, boolean autoIncrement, boolean primaryKey, SQLColumn foreignKey, SQLTable table, SQLDataType type) {
-        super(name, defaultValue, dataTypeRules, notNull, unique, autoIncrement, primaryKey, foreignKey, table, type);
+    public MysqlColumn(String name, Object defaultValue, List<String> dataTypeRules, boolean notNull, boolean unique, boolean autoIncrement, boolean primaryKey, SQLColumn foreignKey, SQLTable table, SQLDataType type, TuxJSQL tuxJsql) {
+        super(name, defaultValue, dataTypeRules, notNull, unique, autoIncrement, primaryKey, foreignKey, table, type,tuxJsql);
     }
 
     @Override
@@ -28,7 +29,7 @@ public class MysqlColumn extends BasicSQLColumn {
         }
         if (defaultValue != null) {
             builder.append(" DEFAULT ");
-            builder.append("`").append(defaultValue).append("`");
+            builder.append("'").append(defaultValue).append("'");
         }
         return builder.toString();
     }
