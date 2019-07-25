@@ -37,8 +37,7 @@ public class MysqlInsertStatement extends BasicInsertStatement {
         try (Connection connection = tuxJSQL.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             int i = 1;
             for (Object object : values) {
-                preparedStatement.setObject(i, object);
-                i++;
+                preparedStatement.setObject(i++, object);
             }
             preparedStatement.executeUpdate();
             Object primaryKey = null;

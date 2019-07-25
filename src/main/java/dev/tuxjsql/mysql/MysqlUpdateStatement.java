@@ -2,6 +2,7 @@ package dev.tuxjsql.mysql;
 
 import dev.tuxjsql.basic.response.BasicDBUpdate;
 import dev.tuxjsql.basic.sql.BasicUpdateStatement;
+import dev.tuxjsql.basic.sql.where.BasicWhereStatement;
 import dev.tuxjsql.core.TuxJSQL;
 import dev.tuxjsql.core.response.DBAction;
 import dev.tuxjsql.core.response.DBUpdate;
@@ -24,6 +25,8 @@ public class MysqlUpdateStatement extends BasicUpdateStatement {
     }
 
     private DBUpdate dbUpdate() {
+        ((BasicWhereStatement) whereStatement).setTable(sqlTable);
+
         DBUpdate dbUpdate = null;
         List<String> columns = new ArrayList<>();
         List<Object> values = new ArrayList<>();
@@ -38,8 +41,12 @@ public class MysqlUpdateStatement extends BasicUpdateStatement {
             }
             columnToUpdate.append("`").append(column).append("`").append("=?");
         }
-        String query = String.format(Queries.UPDATE.getString(), sqlTable.getName(), columnToUpdate, whereStatement.getQuery());
-        values.addAll(Arrays.asList(whereStatement.getValues()));
+        String query = String.format(Queries.UPDATE.getString(), sqlTable.getName(), columnToUpdate);
+        if(whereStatement.getValues().length!=0){
+            query+=" "+ String.format(Queries.WHERE.getString(), whereStatement.getQuery());
+            values.addAll(Arrays.asList(whereStatement.getValues()));
+
+        }
         if(TuxJSQL.getLogger().isDebugEnabled())
             TuxJSQL.getLogger().debug(query);
 
@@ -47,7 +54,7 @@ public class MysqlUpdateStatement extends BasicUpdateStatement {
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             int i = 1;
             for (Object value : values) {
-                preparedStatement.setObject(i, value);
+                preparedStatement.setObject(i++, value);
             }
             dbUpdate = new BasicDBUpdate(sqlTable, preparedStatement.executeUpdate());
         } catch (SQLException e) {

@@ -2,6 +2,7 @@ package dev.tuxjsql.mysql;
 
 import dev.tuxjsql.basic.response.BasicDBDelete;
 import dev.tuxjsql.basic.sql.BasicDeleteStatement;
+import dev.tuxjsql.basic.sql.where.BasicWhereStatement;
 import dev.tuxjsql.core.TuxJSQL;
 import dev.tuxjsql.core.response.DBAction;
 import dev.tuxjsql.core.response.DBDelete;
@@ -21,14 +22,18 @@ public class MysqlDeleteStatement extends BasicDeleteStatement {
     }
 
     DBDelete dbDelete() {
+        ((BasicWhereStatement) whereStatement).setTable(table);
         DBDelete delete = null;
-        String sql = String.format(Queries.DELETE.getString(), table.getName(), whereStatement.getQuery());
+        String sql = String.format(Queries.DELETE.getString(), table.getName());
+        if(whereStatement.getValues().length!=0){
+            sql+= " "+String.format(Queries.WHERE.getString(), whereStatement.getQuery());
+        }
+        TuxJSQL.getLogger().debug(sql);
         try (Connection connection = tuxJSQL.getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 int i = 1;
                 for (Object object : whereStatement.getValues()) {
-                    preparedStatement.setObject(i, object);
-                    i++;
+                    preparedStatement.setObject(i++, object);
                 }
                 delete = new BasicDBDelete(table, preparedStatement.executeUpdate());
             }

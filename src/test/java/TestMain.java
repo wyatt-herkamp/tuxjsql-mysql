@@ -45,10 +45,13 @@ public class TestMain {
         System.out.println(select.numberOfRows());
         System.out.println(select.first().getRow("name").getAsString());
         System.out.println("Done");
+        tabletwo.insert().value("tableone", "1").value("name","test").execute().complete();
         DBSelect two = tabletwo.select().column("id","tableone").column(table.getColumn("name")).join(joinStatement -> {
             joinStatement.joinType(JoinType.INNER).on("tableone", table.getColumn("id"));
         }).where().start("id",1).and().execute().complete();
         System.out.println(two.get(0).getRow("test.name").getAsString());
+        table.update().value("name", "kys").execute().complete();
+        table.delete().where().start("name", "kys").and().execute().complete();
     }
 
     private Properties getLocalProperties() {
