@@ -38,7 +38,7 @@ public class TestMain {
         }).addColumn().name("tableone").setDataType(BasicDataTypes.INTEGER).foreignColumn(table.getColumn("id")).and().createTable();
         System.out.println(table.getName());
         DBAction<DBInsert> dbInsert = table.insert().value("name", "bobby").execute();
-        dbInsert.queue(dbInsert1 -> assertTrue(((int) dbInsert1.primaryKey()) != 0));
+        dbInsert.queue(dbInsert1 -> assertTrue(((BigInteger) dbInsert1.primaryKey()).intValue() != 0));
         tabletwo.insert().value("name","hey").value("tableone",1).execute().complete();
         DBSelect select = table.select().column("id").column("name").where().start("id", "=", 1).and().execute().complete();
         System.out.println(select.numberOfRows());
