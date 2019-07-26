@@ -18,7 +18,7 @@ import java.io.File;
 import java.util.Properties;
 
 public final class MysqlBuilder extends BasicSQLBuilder {
-    public static final String URL = "jdbc:mysql://%1$s/%2$s?serverTimezone=UTC";
+    public static final String URL = "jdbc:mysql://%1$s/%2$s";
     public static final String JDBC_CLASS = "com.mysql.cj.jdbc.Driver";
 
     @Override
@@ -99,6 +99,9 @@ public final class MysqlBuilder extends BasicSQLBuilder {
     @Override
     public void configureConnectionProvider(ConnectionProvider provider, Properties userProperties) {
         String url = String.format(URL, userProperties.getProperty("db.host"), userProperties.getProperty("db.db"));
+        if (userProperties.getProperty("url.other.options") != null) {
+            url += "?" + userProperties.getProperty("url.other.options");
+        }
         if (TuxJSQL.getLogger().isDebugEnabled())
             TuxJSQL.getLogger().debug(String.format("URL:%s", url));
         provider.setup(new ConnectionSettings(jdbcClass(), url), userProperties);
@@ -106,6 +109,6 @@ public final class MysqlBuilder extends BasicSQLBuilder {
 
     @Override
     public <T> ColumnBuilder<T> createColumn(T t) {
-        return new MysqlColumnBuilder<>(tuxJSQL,t);
+        return new MysqlColumnBuilder<>(tuxJSQL, t);
     }
 }

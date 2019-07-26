@@ -56,9 +56,10 @@ public class MysqlUpdateStatement extends BasicUpdateStatement {
             for (Object value : values) {
                 preparedStatement.setObject(i++, value);
             }
-            dbUpdate = new BasicDBUpdate(sqlTable, preparedStatement.executeUpdate());
+            dbUpdate = new BasicDBUpdate(sqlTable, preparedStatement.executeUpdate(),true);
         } catch (SQLException e) {
             TuxJSQL.getLogger().error("Unable to update rows", e);
+            return new BasicDBUpdate(sqlTable, 0, false);
         }
         return dbUpdate;
     }

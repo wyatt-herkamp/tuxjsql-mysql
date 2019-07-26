@@ -21,12 +21,12 @@ public class MysqlDeleteStatement extends BasicDeleteStatement {
         return new DBAction<>(this::dbDelete, tuxJSQL);
     }
 
-    DBDelete dbDelete() {
+    private DBDelete dbDelete() {
         ((BasicWhereStatement) whereStatement).setTable(table);
         DBDelete delete = null;
         String sql = String.format(Queries.DELETE.getString(), table.getName());
-        if(whereStatement.getValues().length!=0){
-            sql+= " "+String.format(Queries.WHERE.getString(), whereStatement.getQuery());
+        if (whereStatement.getValues().length != 0) {
+            sql += " " + String.format(Queries.WHERE.getString(), whereStatement.getQuery());
         }
         TuxJSQL.getLogger().debug(sql);
         try (Connection connection = tuxJSQL.getConnection()) {
@@ -35,10 +35,11 @@ public class MysqlDeleteStatement extends BasicDeleteStatement {
                 for (Object object : whereStatement.getValues()) {
                     preparedStatement.setObject(i++, object);
                 }
-                delete = new BasicDBDelete(table, preparedStatement.executeUpdate());
+                delete = new BasicDBDelete(table, preparedStatement.executeUpdate(), true);
             }
         } catch (SQLException e) {
             TuxJSQL.getLogger().error("Unable to execute delete query", e);
+            return new BasicDBDelete(table, 0, false);
         }
         return delete;
     }

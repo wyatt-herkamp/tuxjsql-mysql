@@ -6,6 +6,7 @@ import dev.tuxjsql.core.sql.SQLColumn;
 import dev.tuxjsql.core.sql.SQLDataType;
 import dev.tuxjsql.core.sql.SQLTable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MysqlColumn extends BasicSQLColumn {
@@ -13,11 +14,15 @@ public class MysqlColumn extends BasicSQLColumn {
     private static final String PRIMARY_KEY = " PRIMARY KEY";
 
     public MysqlColumn(String name, Object defaultValue, List<String> dataTypeRules, boolean notNull, boolean unique, boolean autoIncrement, boolean primaryKey, SQLColumn foreignKey, SQLTable table, SQLDataType type, TuxJSQL tuxJsql) {
-        super(name, defaultValue, dataTypeRules, notNull, unique, autoIncrement, primaryKey, foreignKey, table, type,tuxJsql);
+        super(name, defaultValue, dataTypeRules, notNull, unique, autoIncrement, primaryKey, foreignKey, table, type, tuxJsql);
     }
 
     @Override
     public String build() {
+        if (defaultValue != null && getDataType().key().equals("TEXT")) {
+            TuxJSQL.getLogger().warn("Unable to use DEFAULT with TEXT on MySQL");
+            defaultValue = null;
+        }
         StringBuilder builder = new StringBuilder();
         builder.append("`").append(name).append("`");
         builder.append(" ").append(buildDataType());

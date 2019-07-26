@@ -20,7 +20,8 @@ public class MysqlInsertStatement extends BasicInsertStatement {
     }
 
     private DBInsert doInsert() {
-        DBInsert insert = null;
+
+        Object primaryKey = null;
         StringBuilder columnsToInsert = new StringBuilder();
         StringBuilder question = new StringBuilder();
         for (String column : values.keySet()) {
@@ -34,13 +35,11 @@ public class MysqlInsertStatement extends BasicInsertStatement {
         String query = String.format(Queries.INSERT.getString(), table.getName(), columnsToInsert.toString(), question.toString());
         TuxJSQL.getLogger().debug(query);
         Object[] values = this.values.values().toArray();
-        try (Connection connection = tuxJSQL.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-            int i = 1;
+        try (Connection connection = tuxJSQL.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {            int i = 1;
             for (Object object : values) {
                 preparedStatement.setObject(i++, object);
             }
             preparedStatement.executeUpdate();
-            Object primaryKey = null;
             for (Map.Entry<String, Object> o : this.values.entrySet()) {
                 if (table.getColumn(o.getKey()).primaryKey()) {
                     primaryKey = o.getValue();
@@ -52,15 +51,16 @@ public class MysqlInsertStatement extends BasicInsertStatement {
                     if (set != null && set.next()) {
                         primaryKey = set.getObject(1);
                     }
-                }catch (SQLException e){
+                } catch (SQLException e) {
                     TuxJSQL.getLogger().error("Unable to get primaryKey for latest insert", e);
                 }
             }
-            insert = new BasicDBInsert(table, primaryKey);
 
         } catch (SQLException e) {
             TuxJSQL.getLogger().error("Unable to insert to table", e);
+            return new BasicDBInsert(table, null, false);
         }
-        return insert;
+        //This should never be null
+        return new BasicDBInsert(table, primaryKey, true);
     }
 }

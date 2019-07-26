@@ -1,3 +1,4 @@
+package dev.tuxjsql.mysql.tests;
 import dev.tuxjsql.basic.sql.BasicDataTypes;
 import dev.tuxjsql.core.TuxJSQL;
 import dev.tuxjsql.core.TuxJSQLBuilder;
@@ -37,20 +38,19 @@ public class TestMain {
         }).addColumn().name("tableone").setDataType(BasicDataTypes.INTEGER).foreignColumn(table.getColumn("id")).and().createTable();
         System.out.println(table.getName());
         DBAction<DBInsert> dbInsert = table.insert().value("name", "bobby").execute();
-        //DBInsert dbInsert1  = dbInsert.complete();
-        //System.out.println(dbInsert1.primaryKey());
-        dbInsert.queue(dbInsert1 -> assertTrue(((BigInteger) dbInsert1.primaryKey()).intValue() != 0));
-
+        dbInsert.queue(dbInsert1 -> assertTrue(((int) dbInsert1.primaryKey()) != 0));
+        tabletwo.insert().value("name","hey").value("tableone",1).execute().complete();
         DBSelect select = table.select().column("id").column("name").where().start("id", "=", 1).and().execute().complete();
         System.out.println(select.numberOfRows());
-        System.out.println(select.first().getRow("name").getAsString());
+        System.out.println(select.first().get().getColumn("name").get().getAsString());
         System.out.println("Done");
-        tabletwo.insert().value("tableone", "1").value("name","test").execute().complete();
-        DBSelect two = tabletwo.select().column("id","tableone").column(table.getColumn("name")).join(joinStatement -> {
+        DBSelect two = tabletwo.select().column("id", "tableone").column(table.getColumn("name")).join(joinStatement -> {
             joinStatement.joinType(JoinType.INNER).on("tableone", table.getColumn("id"));
-        }).where().start("id",1).and().execute().complete();
-        System.out.println(two.get(0).getRow("test.name").getAsString());
+        }).where().start("id", 1).and().execute().complete();
+        System.out.println(two.get(0).getColumn("test.name").get().getAsString());
         table.update().value("name", "kys").execute().complete();
+
+        tabletwo.delete().execute().complete();
         table.delete().where().start("name", "kys").and().execute().complete();
     }
 
@@ -58,12 +58,17 @@ public class TestMain {
         Properties properties = new Properties();
         File file = new File(System.getProperty("user.home"), "mysql.properties");
         if(!file.exists()){
-            throw new RuntimeException("Please configure a mysql.properties in your home directory");
-        }
-        try {
-            properties.load(new FileReader(file));
-        } catch (IOException e) {
-            e.printStackTrace();
+            //Probably Travis-CI
+            properties.setProperty("user","root");
+            properties.setProperty("password","");
+            properties.setProperty("db.host","127.0.0.1:3306");
+
+        }else {
+            try {
+                properties.load(new FileReader(file));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return properties;
     }

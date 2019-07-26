@@ -1,5 +1,6 @@
 package dev.tuxjsql.mysql;
 
+import dev.tuxjsql.basic.response.BasicDBSelect;
 import dev.tuxjsql.basic.sql.select.BasicJoinStatement;
 import dev.tuxjsql.basic.sql.select.BasicSelectStatement;
 import dev.tuxjsql.basic.sql.where.BasicWhereStatement;
@@ -30,9 +31,9 @@ public class MysqlSelectStatement extends BasicSelectStatement {
         DBSelect dbSelect = null;
         StringBuilder columnBuilder = new StringBuilder();
         int i = 0;
-        if(columns.isEmpty()){
+        if (columns.isEmpty()) {
             columnBuilder.append("*");
-        }else {
+        } else {
             for (SQLColumn column : this.columns) {
                 if (i != 0) columnBuilder.append(",");
 
@@ -59,9 +60,13 @@ public class MysqlSelectStatement extends BasicSelectStatement {
                 statement.setObject(i++, o);
             }
             ResultSet set = statement.executeQuery();
-            dbSelect = BasicUtils.resultSetToDBSelect(set);
+            //If set is null return a fail
+            if (set == null || set.isClosed()) return new BasicDBSelect(false, table);
+
+            dbSelect = new BasicDBSelect(BasicUtils.resultSetToDBSelect(set), true, table);
         } catch (SQLException e) {
             TuxJSQL.getLogger().error("Unable to select", e);
+            return new BasicDBSelect(false, table);
         }
         return dbSelect;
 
