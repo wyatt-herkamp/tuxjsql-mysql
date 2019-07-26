@@ -61,6 +61,7 @@ public class TestMain {
             //Probably Travis-CI
             properties.setProperty("user","root");
             properties.setProperty("password","");
+            properties.setProperty("db.db","test");
             properties.setProperty("db.host","127.0.0.1:3306");
 
         }else {
