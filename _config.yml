@@ -1,0 +1,10 @@
+remote_theme: pmarsceill/just-the-docs
+title: TuxJSQL-mysql
+description: Tuxjsql mysql documentation
+url: "https://tuxjsql.dev"
+baseurl: "/mysql/"
+aux_links:
+  "TuxJSQL Home":
+    - "https://tuxjsql.dev"
+  "TuxJSQL Mysql GitHub":
+    - "//github.com/tuxjsql/mysql"
