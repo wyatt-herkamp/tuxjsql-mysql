@@ -6,7 +6,7 @@
 
     <groupId>dev.tuxjsql</groupId>
     <artifactId>mysql</artifactId>
-    <version>2.0.RC1</version>
+    <version>2.0</version>
     <name>TuxJSQL (Mysql)</name>
     <licenses>
         <license>
@@ -95,7 +95,7 @@
         <dependency>
             <groupId>dev.tuxjsql</groupId>
             <artifactId>tuxjsql</artifactId>
-            <version>2.0.RC1</version>
+            <version>2.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
