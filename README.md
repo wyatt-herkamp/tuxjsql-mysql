@@ -11,4 +11,3 @@
 | db.host | The Host for the server|  
 | db.db | The database |  
 | url.other.options| (Optional) Additional Values to the connection url. |  
-ddd
