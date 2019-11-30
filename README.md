@@ -6,6 +6,7 @@
 
 |Property Key| Description | 
 |--|--|
+| db.type | `dev.tuxjsql.mysql.MysqlBuilder` |
 | user | The user login|  
 | password | the password for the user|  
 | db.host | The Host for the server|  
