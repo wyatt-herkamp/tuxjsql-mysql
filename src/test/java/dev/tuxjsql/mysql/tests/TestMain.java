@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestMain {
     @Test
-    public void main() throws InterruptedException {
+    public void main() throws Exception {
 
         Properties properties = getLocalProperties();
         properties.setProperty("db.type", "dev.tuxjsql.mysql.MysqlBuilder");
@@ -75,7 +75,7 @@ public class TestMain {
     }
 
     @Test
-    public void whereAndSubWhere() {
+    public void whereAndSubWhere() throws Exception {
         Properties properties = getLocalProperties();
         properties.setProperty("db.type", "dev.tuxjsql.mysql.MysqlBuilder");
 

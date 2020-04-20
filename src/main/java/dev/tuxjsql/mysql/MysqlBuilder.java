@@ -97,7 +97,7 @@ public final class MysqlBuilder extends BasicSQLBuilder {
     }
 
     @Override
-    public void configureConnectionProvider(ConnectionProvider provider, Properties userProperties) {
+    public void configureConnectionProvider(ConnectionProvider provider, Properties userProperties) throws Exception{
         String url = String.format(URL, userProperties.getProperty("db.host"), userProperties.getProperty("db.db"));
         if (userProperties.getProperty("url.other.options") != null) {
             url += "?" + userProperties.getProperty("url.other.options");

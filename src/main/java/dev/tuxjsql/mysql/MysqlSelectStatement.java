@@ -63,7 +63,7 @@ public class MysqlSelectStatement extends BasicSelectStatement {
                 //If set is null return a fail
                 if (set == null || set.isClosed()) return new BasicDBSelect(false, table);
 
-                dbSelect = new BasicDBSelect(BasicUtils.resultSetToDBSelect(set), true, table);
+                dbSelect = new BasicDBSelect(BasicUtils.resultSetToDBSelect(set,tuxJSQL), true, table);
             }catch (SQLException e){
                 TuxJSQL.getLogger().error("Unable to select", e);
                 return new BasicDBSelect(false, table);
