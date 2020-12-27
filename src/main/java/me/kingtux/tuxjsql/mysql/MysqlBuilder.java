@@ -1,8 +1,9 @@
-package dev.tuxjsql.mysql;
+package me.kingtux.tuxjsql.mysql;
 
 import dev.tuxjsql.basic.builders.BasicSQLBuilder;
 import dev.tuxjsql.basic.sql.BasicDataTypes;
 import dev.tuxjsql.basic.sql.select.BasicJoinStatement;
+import dev.tuxjsql.core.Configuration;
 import dev.tuxjsql.core.TuxJSQL;
 import dev.tuxjsql.core.builders.ColumnBuilder;
 import dev.tuxjsql.core.builders.TableBuilder;
@@ -14,7 +15,6 @@ import dev.tuxjsql.core.sql.select.SelectStatement;
 import dev.tuxjsql.core.sql.where.SubWhereStatement;
 import dev.tuxjsql.core.sql.where.WhereStatement;
 
-import java.io.File;
 import java.util.Properties;
 
 public final class MysqlBuilder extends BasicSQLBuilder {
@@ -105,6 +105,11 @@ public final class MysqlBuilder extends BasicSQLBuilder {
         if (TuxJSQL.getLogger().isDebugEnabled())
             TuxJSQL.getLogger().debug(String.format("URL:%s", url));
         provider.setup(new ConnectionSettings(jdbcClass(), url), userProperties);
+    }
+
+    @Override
+    public void configureConnectionProvider(Configuration configuration) throws Exception {
+
     }
 
     @Override

@@ -1,4 +1,4 @@
-package dev.tuxjsql.mysql;
+package me.kingtux.tuxjsql.mysql;
 
 import dev.tuxjsql.basic.sql.BasicSQLColumn;
 import dev.tuxjsql.core.TuxJSQL;
@@ -6,7 +6,6 @@ import dev.tuxjsql.core.sql.SQLColumn;
 import dev.tuxjsql.core.sql.SQLDataType;
 import dev.tuxjsql.core.sql.SQLTable;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MysqlColumn extends BasicSQLColumn {

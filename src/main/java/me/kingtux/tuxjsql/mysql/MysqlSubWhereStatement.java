@@ -1,4 +1,4 @@
-package dev.tuxjsql.mysql;
+package me.kingtux.tuxjsql.mysql;
 
 import dev.tuxjsql.basic.sql.where.BasicSubWhereStatement;
 import dev.tuxjsql.basic.sql.where.BasicWhereResponse;

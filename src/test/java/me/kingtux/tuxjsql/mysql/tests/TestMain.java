@@ -1,4 +1,4 @@
-package dev.tuxjsql.mysql.tests;
+package me.kingtux.tuxjsql.mysql.tests;
 import dev.tuxjsql.basic.sql.BasicDataTypes;
 import dev.tuxjsql.core.TuxJSQL;
 import dev.tuxjsql.core.TuxJSQLBuilder;
@@ -26,7 +26,7 @@ public class TestMain {
     public void main() throws Exception {
 
         Properties properties = getLocalProperties();
-        properties.setProperty("db.type", "dev.tuxjsql.mysql.MysqlBuilder");
+        properties.setProperty("db.type", "me.kingtux.tuxjsql.mysql.MysqlBuilder");
 
         TuxJSQL tuxJSQL = TuxJSQLBuilder.create(properties);
         SQLTable table = tuxJSQL.createTable().setName("test").addColumn().primaryKey().autoIncrement().name("id").setDataType(BasicDataTypes.INTEGER).and().
@@ -77,7 +77,7 @@ public class TestMain {
     @Test
     public void whereAndSubWhere() throws Exception {
         Properties properties = getLocalProperties();
-        properties.setProperty("db.type", "dev.tuxjsql.mysql.MysqlBuilder");
+        properties.setProperty("db.type", "me.kingtux.tuxjsql.mysql.MysqlBuilder");
 
 
         TuxJSQL tuxJSQL = TuxJSQLBuilder.create(properties);

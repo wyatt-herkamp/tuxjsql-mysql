@@ -1,4 +1,4 @@
-package dev.tuxjsql.mysql;
+package me.kingtux.tuxjsql.mysql;
 
 import dev.tuxjsql.basic.response.BasicDBInsert;
 import dev.tuxjsql.basic.sql.BasicInsertStatement;

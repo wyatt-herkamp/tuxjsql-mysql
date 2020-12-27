@@ -1,4 +1,4 @@
-package dev.tuxjsql.mysql;
+package me.kingtux.tuxjsql.mysql;
 
 import dev.tuxjsql.basic.sql.BasicDataTypes;
 import dev.tuxjsql.core.sql.SQLDataType;
