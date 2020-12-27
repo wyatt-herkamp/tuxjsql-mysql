@@ -1,11 +1,11 @@
 package me.kingtux.tuxjsql.mysql;
 
-import dev.tuxjsql.basic.response.BasicDBDelete;
-import dev.tuxjsql.basic.sql.BasicDeleteStatement;
-import dev.tuxjsql.basic.sql.where.BasicWhereStatement;
-import dev.tuxjsql.core.TuxJSQL;
-import dev.tuxjsql.core.response.DBAction;
-import dev.tuxjsql.core.response.DBDelete;
+import me.kingtux.tuxjsql.basic.response.BasicDBDelete;
+import me.kingtux.tuxjsql.basic.sql.BasicDeleteStatement;
+import me.kingtux.tuxjsql.basic.sql.where.BasicWhereStatement;
+import me.kingtux.tuxjsql.core.TuxJSQL;
+import me.kingtux.tuxjsql.core.response.DBAction;
+import me.kingtux.tuxjsql.core.response.DBDelete;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,14 +1,14 @@
 package me.kingtux.tuxjsql.mysql;
 
-import dev.tuxjsql.basic.response.BasicDBSelect;
-import dev.tuxjsql.basic.sql.select.BasicJoinStatement;
-import dev.tuxjsql.basic.sql.select.BasicSelectStatement;
-import dev.tuxjsql.basic.sql.where.BasicWhereStatement;
-import dev.tuxjsql.basic.utils.BasicUtils;
-import dev.tuxjsql.core.TuxJSQL;
-import dev.tuxjsql.core.response.DBAction;
-import dev.tuxjsql.core.response.DBSelect;
-import dev.tuxjsql.core.sql.SQLColumn;
+import me.kingtux.tuxjsql.basic.response.BasicDBSelect;
+import me.kingtux.tuxjsql.basic.sql.select.BasicJoinStatement;
+import me.kingtux.tuxjsql.basic.sql.select.BasicSelectStatement;
+import me.kingtux.tuxjsql.basic.sql.where.BasicWhereStatement;
+import me.kingtux.tuxjsql.basic.utils.BasicUtils;
+import me.kingtux.tuxjsql.core.TuxJSQL;
+import me.kingtux.tuxjsql.core.response.DBAction;
+import me.kingtux.tuxjsql.core.response.DBSelect;
+import me.kingtux.tuxjsql.core.sql.SQLColumn;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

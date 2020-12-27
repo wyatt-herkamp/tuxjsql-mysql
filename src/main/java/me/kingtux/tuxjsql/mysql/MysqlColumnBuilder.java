@@ -1,8 +1,8 @@
 package me.kingtux.tuxjsql.mysql;
 
-import dev.tuxjsql.basic.builders.BasicColumnBuilder;
-import dev.tuxjsql.core.TuxJSQL;
-import dev.tuxjsql.core.sql.SQLColumn;
+import me.kingtux.tuxjsql.basic.builders.BasicColumnBuilder;
+import me.kingtux.tuxjsql.core.TuxJSQL;
+import me.kingtux.tuxjsql.core.sql.SQLColumn;
 
 public class MysqlColumnBuilder<T> extends BasicColumnBuilder<T> {
     public MysqlColumnBuilder(TuxJSQL tuxJSQL, T andValue) {

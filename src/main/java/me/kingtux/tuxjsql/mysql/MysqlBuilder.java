@@ -1,19 +1,19 @@
 package me.kingtux.tuxjsql.mysql;
 
-import dev.tuxjsql.basic.builders.BasicSQLBuilder;
-import dev.tuxjsql.basic.sql.BasicDataTypes;
-import dev.tuxjsql.basic.sql.select.BasicJoinStatement;
-import dev.tuxjsql.core.Configuration;
-import dev.tuxjsql.core.TuxJSQL;
-import dev.tuxjsql.core.builders.ColumnBuilder;
-import dev.tuxjsql.core.builders.TableBuilder;
-import dev.tuxjsql.core.connection.ConnectionProvider;
-import dev.tuxjsql.core.connection.ConnectionSettings;
-import dev.tuxjsql.core.sql.*;
-import dev.tuxjsql.core.sql.select.JoinStatement;
-import dev.tuxjsql.core.sql.select.SelectStatement;
-import dev.tuxjsql.core.sql.where.SubWhereStatement;
-import dev.tuxjsql.core.sql.where.WhereStatement;
+import me.kingtux.tuxjsql.basic.builders.BasicSQLBuilder;
+import me.kingtux.tuxjsql.basic.sql.BasicDataTypes;
+import me.kingtux.tuxjsql.basic.sql.select.BasicJoinStatement;
+import me.kingtux.tuxjsql.core.Configuration;
+import me.kingtux.tuxjsql.core.TuxJSQL;
+import me.kingtux.tuxjsql.core.builders.ColumnBuilder;
+import me.kingtux.tuxjsql.core.builders.TableBuilder;
+import me.kingtux.tuxjsql.core.connection.ConnectionProvider;
+import me.kingtux.tuxjsql.core.connection.ConnectionSettings;
+import me.kingtux.tuxjsql.core.sql.*;
+import me.kingtux.tuxjsql.core.sql.select.JoinStatement;
+import me.kingtux.tuxjsql.core.sql.select.SelectStatement;
+import me.kingtux.tuxjsql.core.sql.where.SubWhereStatement;
+import me.kingtux.tuxjsql.core.sql.where.WhereStatement;
 
 import java.util.Properties;
 

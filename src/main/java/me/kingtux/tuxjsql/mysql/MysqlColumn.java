@@ -1,10 +1,10 @@
 package me.kingtux.tuxjsql.mysql;
 
-import dev.tuxjsql.basic.sql.BasicSQLColumn;
-import dev.tuxjsql.core.TuxJSQL;
-import dev.tuxjsql.core.sql.SQLColumn;
-import dev.tuxjsql.core.sql.SQLDataType;
-import dev.tuxjsql.core.sql.SQLTable;
+import me.kingtux.tuxjsql.basic.sql.BasicSQLColumn;
+import me.kingtux.tuxjsql.core.TuxJSQL;
+import me.kingtux.tuxjsql.core.sql.SQLColumn;
+import me.kingtux.tuxjsql.core.sql.SQLDataType;
+import me.kingtux.tuxjsql.core.sql.SQLTable;
 
 import java.util.List;
 

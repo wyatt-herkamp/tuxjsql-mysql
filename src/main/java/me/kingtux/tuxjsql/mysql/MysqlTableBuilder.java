@@ -1,9 +1,9 @@
 package me.kingtux.tuxjsql.mysql;
 
-import dev.tuxjsql.basic.builders.BasicTableBuilder;
-import dev.tuxjsql.core.TuxJSQL;
-import dev.tuxjsql.core.builders.ColumnBuilder;
-import dev.tuxjsql.core.sql.SQLTable;
+import me.kingtux.tuxjsql.basic.builders.BasicTableBuilder;
+import me.kingtux.tuxjsql.core.TuxJSQL;
+import me.kingtux.tuxjsql.core.builders.ColumnBuilder;
+import me.kingtux.tuxjsql.core.sql.SQLTable;
 
 import java.util.stream.Collectors;
 

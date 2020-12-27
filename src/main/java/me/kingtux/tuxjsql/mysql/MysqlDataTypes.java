@@ -1,7 +1,7 @@
 package me.kingtux.tuxjsql.mysql;
 
-import dev.tuxjsql.basic.sql.BasicDataTypes;
-import dev.tuxjsql.core.sql.SQLDataType;
+import me.kingtux.tuxjsql.basic.sql.BasicDataTypes;
+import me.kingtux.tuxjsql.core.sql.SQLDataType;
 
 public enum MysqlDataTypes implements SQLDataType {
     TEXT(BasicDataTypes.TEXT),

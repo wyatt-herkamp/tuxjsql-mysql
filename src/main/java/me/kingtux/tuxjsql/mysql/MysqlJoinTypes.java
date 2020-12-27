@@ -1,6 +1,6 @@
 package me.kingtux.tuxjsql.mysql;
 
-import dev.tuxjsql.core.sql.select.JoinType;
+import me.kingtux.tuxjsql.core.sql.select.JoinType;
 
 public enum MysqlJoinTypes {
     INNER("INNER JOIN", JoinType.INNER);

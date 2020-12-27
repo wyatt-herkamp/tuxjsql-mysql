@@ -1,8 +1,8 @@
 package me.kingtux.tuxjsql.mysql;
 
-import dev.tuxjsql.basic.sql.BasicSQLTable;
-import dev.tuxjsql.core.TuxJSQL;
-import dev.tuxjsql.core.sql.SQLColumn;
+import me.kingtux.tuxjsql.basic.sql.BasicSQLTable;
+import me.kingtux.tuxjsql.core.TuxJSQL;
+import me.kingtux.tuxjsql.core.sql.SQLColumn;
 
 import java.util.List;
 

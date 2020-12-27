@@ -1,9 +1,9 @@
 package me.kingtux.tuxjsql.mysql;
 
-import dev.tuxjsql.core.Configuration;
-import dev.tuxjsql.core.builders.SQLBuilder;
-import dev.tuxjsql.core.connection.ConnectionSettings;
-import dev.tuxjsql.core.tools.SimpleSupplier;
+import me.kingtux.tuxjsql.core.Configuration;
+import me.kingtux.tuxjsql.core.builders.SQLBuilder;
+import me.kingtux.tuxjsql.core.connection.ConnectionSettings;
+import me.kingtux.tuxjsql.core.tools.SimpleSupplier;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Properties;

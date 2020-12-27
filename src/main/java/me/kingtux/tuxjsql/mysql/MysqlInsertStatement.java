@@ -1,10 +1,10 @@
 package me.kingtux.tuxjsql.mysql;
 
-import dev.tuxjsql.basic.response.BasicDBInsert;
-import dev.tuxjsql.basic.sql.BasicInsertStatement;
-import dev.tuxjsql.core.TuxJSQL;
-import dev.tuxjsql.core.response.DBAction;
-import dev.tuxjsql.core.response.DBInsert;
+import me.kingtux.tuxjsql.basic.response.BasicDBInsert;
+import me.kingtux.tuxjsql.basic.sql.BasicInsertStatement;
+import me.kingtux.tuxjsql.core.TuxJSQL;
+import me.kingtux.tuxjsql.core.response.DBAction;
+import me.kingtux.tuxjsql.core.response.DBInsert;
 
 import java.sql.*;
 import java.util.Map;
