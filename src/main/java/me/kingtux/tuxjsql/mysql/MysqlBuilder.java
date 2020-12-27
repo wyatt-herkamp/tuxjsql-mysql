@@ -9,11 +9,15 @@ import me.kingtux.tuxjsql.core.builders.ColumnBuilder;
 import me.kingtux.tuxjsql.core.builders.TableBuilder;
 import me.kingtux.tuxjsql.core.connection.ConnectionProvider;
 import me.kingtux.tuxjsql.core.connection.ConnectionSettings;
-import me.kingtux.tuxjsql.core.sql.*;
+import me.kingtux.tuxjsql.core.sql.DeleteStatement;
+import me.kingtux.tuxjsql.core.sql.InsertStatement;
+import me.kingtux.tuxjsql.core.sql.SQLDataType;
+import me.kingtux.tuxjsql.core.sql.UpdateStatement;
 import me.kingtux.tuxjsql.core.sql.select.JoinStatement;
 import me.kingtux.tuxjsql.core.sql.select.SelectStatement;
 import me.kingtux.tuxjsql.core.sql.where.SubWhereStatement;
 import me.kingtux.tuxjsql.core.sql.where.WhereStatement;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Properties;
 
@@ -97,7 +101,7 @@ public final class MysqlBuilder extends BasicSQLBuilder {
     }
 
     @Override
-    public void configureConnectionProvider(ConnectionProvider provider, Properties userProperties) throws Exception{
+    public void configureConnectionProvider(ConnectionProvider provider, Properties userProperties) throws Exception {
         String url = String.format(URL, userProperties.getProperty("db.host"), userProperties.getProperty("db.db"));
         if (userProperties.getProperty("url.other.options") != null) {
             url += "?" + userProperties.getProperty("url.other.options");
@@ -106,10 +110,10 @@ public final class MysqlBuilder extends BasicSQLBuilder {
             TuxJSQL.getLogger().debug(String.format("URL:%s", url));
         provider.setup(new ConnectionSettings(jdbcClass(), url), userProperties);
     }
-
     @Override
-    public void configureConnectionProvider(Configuration configuration) throws Exception {
-
+    public void configureConnectionProvider(ConnectionProvider provider, Configuration configuration) throws Exception {
+        Pair<ConnectionSettings, Properties> connection = configuration.createConnection();
+        provider.setup(connection.getLeft(), connection.getRight());
     }
 
     @Override
